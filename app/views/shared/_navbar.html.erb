@@ -4,16 +4,18 @@
     <%= image_tag "logo.png" %>
   <% end %>
 
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
     <!-- Search form -->
+
     <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Select type of HornTrip">
+      <input type="text" class="navbar-wagon-search-input" placeholder="Location">
       <button type="submit" class="navbar-wagon-search-btn">
         <i class="fa fa-search"></i>
       </button>
     </form>
+
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
