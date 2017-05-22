@@ -1,0 +1,15 @@
+<div class="col-md-6 col-sm-12 col-md-offset-2">
+  <div class="trip-description">
+    <div class="container trip-description-left">
+      <h1><%= @horntrip.title %></h1>
+      <p>Proposé par : <%= @horntrip.user %></p>
+      <p>Au programme : <%= @horntrip.description %></p>
+      <p><%= @horntrip.location %></p>
+    </div>
+    <div class="container trip-description-right">
+      <%= image_tag "https://a0.muscache.com/im/pictures/f8b51a41-900b-4312-9ea0-d141133a116d.jpg?aki_policy=xl_poster" %>
+      <p>Price: <%= @horntrip.price %> euros</p>
+      <button type="button" class="btn btn-danger">Book your trip</button>
+    </div>
+  </div>
+</div>
