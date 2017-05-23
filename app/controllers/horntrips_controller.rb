@@ -23,6 +23,8 @@ class HorntripsController < ApplicationController
     @horntrip.user = current_user
     @horntrip.starting_day = Date.strptime(params[:horntrip][:starting_day], '%m/%d/%Y')
     if @horntrip.save
+      @horntrip.user.is_mike = true
+      @horntrip.user.save
       redirect_to horntrips_path
     else
       render :new
@@ -40,6 +42,10 @@ class HorntripsController < ApplicationController
   def destroy
     @horntrip.destroy
     redirect_to horntrips_path
+  end
+
+  def dashboard
+    @user_horntrips = current_user.horntrips
   end
 
   private
