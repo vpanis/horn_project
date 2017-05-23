@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :horntrips
   get "bookings" => 'bookings#index'
   get "bookings" => 'bookings#show'
+  get "dashboard" => 'horntrips#dashboard'
 end
