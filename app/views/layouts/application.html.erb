@@ -14,9 +14,14 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+
+    <!-- Javascript script -->
     <%= javascript_include_tag 'application' %>
 
-    <!-- Map script -->
+    <!-- Cloudinary script -->
+    <%= cloudinary_js_config %> <!-- Append this after the main `javascript_include_tag`. -->
+
+    <!-- Google map script -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9IiojkvdNyDU7FuDW2-wcRq55uMKPBbw"></script>
     <script type="text/javascript">
     var myLatlng = new google.maps.LatLng(-2.163106, -55.126648);

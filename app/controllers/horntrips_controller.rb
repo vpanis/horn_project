@@ -21,11 +21,20 @@ class HorntripsController < ApplicationController
   def create
     @horntrip = Horntrip.new(horntrip_params)
     @horntrip.user = current_user
+    @horntrip.starting_day = Date.strptime(params[:horntrip][:starting_day], '%m/%d/%Y')
     if @horntrip.save
       redirect_to horntrips_path
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @horntrip.update(horntrip_params)
+    redirect_to horntrip_path(@horntrip)
   end
 
   def destroy
@@ -36,7 +45,7 @@ class HorntripsController < ApplicationController
   private
 
   def horntrip_params
-    params.require(:horntrip).permit(:title, :location, :price, :starting_day, :length, :description, :is_outside, :is_dirty, :is_food)
+    params.require(:horntrip).permit(:title, :location, :price, :starting_day, :length, :description, :is_outside, :is_dirty, :is_food, :photo)
   end
 
   def set_horntrip

@@ -6,7 +6,7 @@
         <p>Proposé par : <%= @horntrip.user.email %></p>
         <hr>
         <div class="trip-description only-small-screen text-center">
-          <%= image_tag "https://a0.muscache.com/im/pictures/f8b51a41-900b-4312-9ea0-d141133a116d.jpg?aki_policy=xl_poster" %>
+          <%= cl_image_tag set_horntrip_image(@horntrip) %>
           <p>Price: <%= @horntrip.price %> euros</p>
           <button type="button" class="btn btn-danger">Book your trip</button>
         </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-xs-12 col-md-3">
       <div class="trip-description affix only-large-screen">
-        <%= image_tag "https://a0.muscache.com/im/pictures/f8b51a41-900b-4312-9ea0-d141133a116d.jpg?aki_policy=xl_poster" %>
+        <%= cl_image_tag set_horntrip_image(@horntrip) %>
         <p>Price: <%= @horntrip.price %> euros</p>
         <button type="button" class="btn btn-danger">Book your trip</button>
       </div>
