@@ -2,7 +2,13 @@ class HorntripsController < ApplicationController
   before_action :set_horntrip, only: [:show, :edit, :update, :destroy]
 
   def index
+    @location = params[:q]
     @horntrips = Horntrip.all
+    if params[:q]
+      if not params[:q].empty?
+        @horntrips = Horntrip.where("location ILIKE ?", "%#{params[:q]}%")
+      end
+    end
   end
 
   def show
