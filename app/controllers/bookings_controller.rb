@@ -8,31 +8,31 @@ class BookingsController < ApplicationController
   def show
   end
 
-  def new
-    @booking = Booking.new
-  end
+  # def new
+  #   @booking = Booking.new
+  # end
 
-  def create
-    @booking = Booking.new(booking_params)
-    if @booking.save
-      redirect_to bookings_path
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @booking = Booking.new(booking_params)
+  #   if @booking.save
+  #     redirect_to bookings_path
+  #   else
+  #     render :new
+  #   end
+  # end
 
-  def destroy
-    @booking.destroy
-    redirect_to bookings_path
-  end
+  # def destroy
+  #   @booking.destroy
+  #   redirect_to bookings_path
+  # end
 
-  private
+  # private
 
-  def booking_params
-    params.require(:booking).permit(:is_validated, :user_id, :horntrip_id)
-  end
+  # def booking_params
+  #   params.require(:booking).permit(:is_validated, :user_id, :horntrip_id)
+  # end
 
-  def set_booking
-    @booking = Booking.find(params[:id])
-  end
+  # def set_booking
+  #   @booking = Booking.find(params[:id])
+  # end
 end
