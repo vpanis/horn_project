@@ -14,6 +14,7 @@ class HorntripsController < ApplicationController
 
   def create
     @horntrip = Horntrip.new(horntrip_params)
+    @horntrip.user = current_user
     if @horntrip.save
       redirect_to horntrips_path
     else
