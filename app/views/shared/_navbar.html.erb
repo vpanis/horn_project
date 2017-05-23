@@ -5,14 +5,13 @@
   <% end %>
 
     <!-- Search form -->
+  <% unless params[:action] == "home" %>
+    <%= form_tag(horntrips_path, method: "get", class: "form-inline search-form") do %>
+      <%= text_field_tag(:q, "", options = {placeholder: "location", class: "form-control"}) %>
+      <%= submit_tag("Search", options = {class: "btn btn-primary"}) %>
+    <% end %>
+  <% end %>
 
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Select type of HornTrip">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Location">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
