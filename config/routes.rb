@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   get "bookings" => 'bookings#index'
   get "bookings" => 'bookings#show'
   get "dashboard" => 'horntrips#dashboard'
+  mount Attachinary::Engine => "/attachinary"
 end
