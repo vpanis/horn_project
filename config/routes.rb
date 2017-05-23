@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :horntrips
   get "bookings" => 'bookings#index'
   get "bookings" => 'bookings#show'
+  mount Attachinary::Engine => "/attachinary"
 end
