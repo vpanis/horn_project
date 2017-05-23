@@ -21,7 +21,7 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 50px;
+  width: 100px;
 }
 
 /* Navbar right section (with form, links, button) */
@@ -72,6 +72,7 @@
   justify-content: flex-end;
   padding: 0 10px;
   position: relative;
+
 }
 .navbar-wagon-search-btn {
   line-height: 40px;
@@ -79,7 +80,7 @@
   border: none;
   background: transparent;
   position: absolute;
-  right: 14px;
+  right: -20px;
   top: -2px;
   z-index: 1;
 }
@@ -92,8 +93,10 @@
   border: 1px solid #E6E6E6;
   border-radius: 5px;
   padding: 0 10px;
+  margin: 0 10px;
   font-size: 14px;
   outline: none;
+  width: 300px;
 }
 .navbar-wagon-search-input:focus  {
   border: 1px solid #CCCCCC;

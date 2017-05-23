@@ -5,15 +5,16 @@
 
 // General style
 $font-family-sans-serif:  $base-font;
-$body-bg:                 white;
+$body-bg:                 #FAFBFC;
 $font-size-base:          $base-size;
 $line-height-base:        $base-height;
 $headings-font-family:    $header-font;
+$text-color:              $gray;
 
 // Semantic color scheme
 // => http://getbootstrap.com/customize/#colors
 $gray-base:       $gray;
-$brand-primary:   $blue;
+$brand-primary:   $green;
 $brand-success:   $green;
 $brand-info:      $yellow;
 $brand-danger:    $red;
@@ -24,6 +25,11 @@ $border-radius-base:  2px;
 $border-radius-large: 2px;
 $border-radius-small: 2px;
 
+// Button / border color
+$btn-primary-border: $green;
+
+// Screen sizes
 $screen-sm-min: 768px;
 $screen-md-min: 992px;
 $screen-lg-min: 1200px;
+
