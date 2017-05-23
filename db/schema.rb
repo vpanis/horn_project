@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 20170523083533) do
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.boolean  "is_validated", default: false
+    t.string   "status",      default: "Pending"
     t.integer  "user_id"
     t.integer  "horntrip_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["horntrip_id"], name: "index_bookings_on_horntrip_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
