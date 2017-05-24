@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
   def show
   end
 
+
   def new
     @booking = Booking.new
   end
@@ -25,6 +26,10 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     redirect_to bookings_path
+  end
+
+  def trips
+    @user_bookings = current_user.bookings
   end
 
   private
