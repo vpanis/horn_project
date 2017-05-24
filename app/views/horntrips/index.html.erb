@@ -1,3 +1,21 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
+    <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
+      <div class="form-inline text-center search-filter">
+        <%= f.input :q, as: "hidden", input_html: {value: @location} %>
+        <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
+        <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
+        <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
+        <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
 <h3 class="readme-header text-center">HornTrips near <%= @location %> </h3>
 
 <div class="container-fluid">
