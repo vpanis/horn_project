@@ -3,8 +3,16 @@
     <div class="col-xs-12 col-md-9">
         <h1><%= @horntrip.title %></h1>
         <hr>
-        <p>Proposé par : <%= @horntrip.user.email %></p>
+        <p><strong>Proposed by:</strong> <%= set_username(@horntrip.user) %></p>
         <hr>
+        <p>
+          <strong>Required skills:</strong>
+          <ul>
+            <li><%= @horntrip.is_food ? "Ready to hunt" : "" %></li>
+            <li><%= @horntrip.is_dirty ? "Muddy experience" : "" %></li>
+            <li><%= @horntrip.is_outside ? "Sleeping in the open" : "" %></li>
+          </ul>
+        </p>
         <div class="trip-description only-small-screen text-center">
           <%= cl_image_tag set_horntrip_image(@horntrip) %>
           <p>Price: <%= @horntrip.price %> euros</p>
@@ -13,7 +21,7 @@
         <% end %>
         </div>
         <hr>
-        <p>Au programme : <%= @horntrip.description %></p>
+        <p><strong>Schedule:</strong> <%= @horntrip.description %></p>
         <br>
         <!-- Map -->
         <div id="map" style="width: 100%; height: 400px;"></div>

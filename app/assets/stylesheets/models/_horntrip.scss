@@ -19,6 +19,9 @@ body {
   text-align: justify;
   text-justify: inter-word;
   line-height: 25px;
+  li {
+    list-style-type: none;
+  }
 }
 .trip-description img {
   width: 30%;
