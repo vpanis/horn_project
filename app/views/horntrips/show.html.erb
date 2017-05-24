@@ -8,7 +8,9 @@
         <div class="trip-description only-small-screen text-center">
           <%= cl_image_tag set_horntrip_image(@horntrip) %>
           <p>Price: <%= @horntrip.price %> euros</p>
-          <button type="button" class="btn btn-danger">Book your trip</button>
+          <%= simple_form_for [@horntrip, @booking] do |f| %>
+          <%= f.button :submit, class: "btn btn-danger" %>
+        <% end %>
         </div>
         <hr>
         <p>Au programme : <%= @horntrip.description %></p>
@@ -21,7 +23,9 @@
       <div class="trip-description affix only-large-screen">
         <%= cl_image_tag set_horntrip_image(@horntrip) %>
         <p>Price: <%= @horntrip.price %> euros</p>
-        <button type="button" class="btn btn-danger">Book your trip</button>
+        <%= simple_form_for [@horntrip, @booking] do |f| %>
+          <%= f.button :submit, class: "btn btn-danger" %>
+        <% end %>
       </div>
     </div>
   </div>

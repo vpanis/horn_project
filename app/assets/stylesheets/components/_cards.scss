@@ -41,3 +41,33 @@
 .card-link:hover{
   opacity: 0.1;
 }
+
+// card-new
+
+.card-new {
+  height: 175px;
+  border: 1px 1px;
+  background-size: cover !important;
+  position: relative;
+  border: 1px dashed #555459;
+  text-align: middle;
+    h2 {
+      font-size: 24px;
+
+    }
+}
+
+.card-new-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-new-link:hover{
+  opacity: 0.1;
+}
+
