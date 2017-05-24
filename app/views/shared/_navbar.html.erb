@@ -7,7 +7,7 @@
     <!-- Search form -->
   <% unless params[:action] == "home" %>
     <%= form_tag(horntrips_path, method: "get", class: "form-inline search-form") do %>
-      <%= text_field_tag("horntrip[q]", params[:horntrip] ? params[:horntrip][:q] : "", options = {placeholder: "location", class: "form-control", id: "navbar_input"}) %>
+      <%= text_field_tag("horntrip[q]", params[:horntrip] ? params[:horntrip][:q] : "", options = {placeholder: "Enter a location", class: "form-control", id: "navbar_input"}) %>
       <%= submit_tag("Search", options = {class: "btn btn-primary"}) %>
     <% end %>
   <% end %>
