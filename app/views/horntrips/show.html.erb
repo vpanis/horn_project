@@ -21,7 +21,7 @@
           <%= cl_image_tag set_horntrip_image(@horntrip) %>
           <p>Price: <%= @horntrip.price %> euros</p>
           <%= simple_form_for [@horntrip, @booking] do |f| %>
-          <%= f.submit, class: "btn btn-danger btn-book" %>
+          <%= f.submit "Book", class: "btn btn-danger btn-book" %>
         <% end %>
         </div>
         <hr>
