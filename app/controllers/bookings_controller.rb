@@ -17,6 +17,7 @@ class BookingsController < ApplicationController
   def create
     @horntrip = Horntrip.find(params[:horntrip_id])
     @booking = Booking.new(user_id: current_user.id, horntrip_id: @horntrip.id)
+    raise
     if @booking.save
       redirect_to horntrip_booking_path(@horntrip.id, @booking.id)
     else
