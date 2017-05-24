@@ -23,4 +23,5 @@ auvergne = Horntrip.create(title: "Auvergne vulcano", location: "Avenue de la Ga
 un       = Booking.create(user: mike, horntrip: amazonie)
 deux     = Booking.create(user: jacques, horntrip: auvergne)
 trois    = Booking.create(user: marco, horntrip: angers)
+quatre    = Booking.create(user_id: user_id, horntrip: angers)
 puts 'Finished !'
