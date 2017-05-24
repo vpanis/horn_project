@@ -20,7 +20,7 @@
           <p><%= booking.horntrip.description %></p>
       </div>
       <div class="col-xs-12 col-md-3">
-        <div class="trip-description affix only-large-screen">
+        <div class="trip-description only-large-screen">
           <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
           <p>Price: <%= booking.horntrip.price %> euros</p>
           <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
