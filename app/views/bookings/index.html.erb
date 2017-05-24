@@ -2,35 +2,107 @@
   <%= "Bookings" %>
 <% end %>
 
-<% @bookings.each do |booking| %>
 
-  <div class="container trip-description-card col-md-6 col-md-offset-3">
+<div class="banner bookings-banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%), url( '<%= cl_image_path @horntrip.photo, height: 300, width: 400, crop: :fill %>' );">
+
+  <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-9">
-          <h1>Votre demande de booking :</h1>
-          <hr>
-          <p>Horntrip : <%= booking.horntrip.title %></p>
-          <p>Votre guide : <%= booking.horntrip.user.email %></p>
-          <hr>
-          <div class="trip-description only-small-screen text-center">
-            <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
-            <p>Price: <%= booking.status %> euros</p>
-            <p>Price: <%= booking.horntrip.price %> euros</p>
-          </div>
-          <hr>
-          <h1 class="text-center">Status : <%= booking.status %> </h1>
-          <hr>
-          <p>Programme :</p>
-          <p><%= booking.horntrip.description %></p>
-      </div>
-      <div class="col-xs-12 col-md-3">
-        <div class="trip-description only-large-screen">
-          <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
-          <p>Price: <%= booking.horntrip.price %> euros</p>
-          <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
+
+      <div class="banner-content">
+
+        <div class="col-md-6 col-md-offset-6">
+          <h1 class="banner-title"><strong><%= @horntrip.title %></strong></h1>
         </div>
+
+        <div class="col-md-5 col-md-offset-7">
+          <div class="banner-text">
+            <h2 class="banner-brand"><strong><%= @horntrip.price %> €</strong></h2>
+            <p class="banner-tagline">Description: <%= @horntrip.description %></p>
+          </div>
+          <ul class="list-inline">HornTrip features:
+            <% if !@horntrip.is_outside.nil? %>
+              <%= @horntrip.is_outside ? "Outside" : "Inside" %>
+            <% end %>
+            <% if !@horntrip.is_outside.nil? %>
+              <%= @horntrip.is_dirty ? "Dirty" : "Clean" %>
+            <% end %>
+            <% if !@horntrip.is_outside.nil? %>
+              <%= @horntrip.is_food ? "Food" : "No food" %>
+            <% end %>
+
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-<% end %>
+<div class="container-fluid type-bookings">
+  <div class="pending-bookings">
+    <h2>Pending</h2>
+      <% @bookings.where(status: "pending").each do |booking| %>
+        <div class="container trip-description-card col-md-6 col-md-offset-3">
+          <div class="row">
+            <div class="col-xs-12 col-md-9">
+              <h1 class="text-center">Status : <%= booking.status %> </h1>
+              <p><%= booking.user %> asks for validation.</p>
+                <div class="trip-description only-small-screen text-center">
+                  <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3">
+              <div class="trip-description only-large-screen">
+                <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+              </div>
+            </div>
+            <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
+          </div>
+        </div>
+      <% end %>
+  </div>
+  <div class="confirmed-bookings">
+    <h2>Confirmed</h2>
+    <% @bookings.where(status: "confirmed").each do |booking| %>
+      <div class="container trip-description-card col-md-6 col-md-offset-3">
+        <div class="row">
+          <div class="col-xs-12 col-md-9">
+            <h1 class="text-center">Status : <%= booking.status %> </h1>
+            <p><%= booking.user %> asks for validation.</p>
+              <div class="trip-description only-small-screen text-center">
+                <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+              </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="trip-description only-large-screen">
+              <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+            </div>
+          </div>
+          <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="cancelled-bookings">
+    <h2>Cancelled</h2>
+    <% @bookings.where(status: "cancelled").each do |booking| %>
+      <div class="container trip-description-card col-md-6 col-md-offset-3">
+        <div class="row">
+          <div class="col-xs-12 col-md-9">
+            <h1 class="text-center">Status : <%= booking.status %> </h1>
+            <p><%= booking.user %> asks for validation.</p>
+              <div class="trip-description only-small-screen text-center">
+                <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+              </div>
+          </div>
+          <div class="col-xs-12 col-md-3">
+            <div class="trip-description only-large-screen">
+              <%= cl_image_tag set_horntrip_image(booking.horntrip) %>
+            </div>
+          </div>
+          <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
