@@ -6,7 +6,7 @@
         <p class="sm-marged-bottom">You're looking for new sensations in your life ? Give youself the chance to experiment complete new experiences going for an incredible adventure that feets with your skills.</p>
         <%= link_to 'Choose a trip', horntrips_path, class: "btn btn-primary" %>
       </div>
-      <% if current_user.bookings %>
+      <% if current_user.bookings.length > 0 %>
         <h2 class="sm-marged-bottom">Your adventures</h2>
       <% end %>
     </div>
