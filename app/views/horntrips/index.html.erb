@@ -25,16 +25,13 @@
     <% @horntrips.each do |horntrip| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
-          <div class="card-category"><%= horntrip.title %></div>
           <div class="card-description">
-            <h2>Some stuff</h2>
+            <h2><%= horntrip.title %></h2>
             <p><%= horntrip.description %></p>
             <p><%= horntrip.user.email %></p>
           </div>
-          <%= cl_image_tag set_horntrip_image(horntrip), class: "card-user avatar" %>
- <!--          <img class="card-user avatar" src="images/papillard.jpeg"> -->
+          <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
           <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
-          <!-- <a class="card-link" href="#" ></a> -->
         </div>
       </div>
     <% end %>
