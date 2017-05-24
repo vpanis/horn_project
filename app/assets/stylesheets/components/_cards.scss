@@ -51,9 +51,11 @@
   position: relative;
   border: 1px dashed #555459;
   text-align: middle;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
     h2 {
       font-size: 24px;
-
     }
 }
 
