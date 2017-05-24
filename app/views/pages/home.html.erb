@@ -19,7 +19,7 @@
         <div class="col-md-6 col-md-offset-6">
           <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
             <div class="form-group banner-form-group">
-              <%= text_field_tag(:q, "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+              <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
             </div>
             <%= submit_tag("Search HornTrips !", options = {class: "btn btn-primary banner-cta"}) %>
           <% end %>
