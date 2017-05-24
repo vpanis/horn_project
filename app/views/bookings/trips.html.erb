@@ -1,4 +1,4 @@
-<div class="container marged-top">
+<div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="marged-top marged-bottom">
@@ -15,14 +15,16 @@
     <% if current_user.bookings %>
       <% @user_bookings.each do |user_booking| %>
         <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+        <div class="sm-marged-bottom">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(user_booking.horntrip), crop: :scale %>');">
             <div class="card-category"><%= user_booking.status %></div>
             <div class="card-description">
             <h2><%= user_booking.horntrip.title %></h2>
             <p><%= user_booking.horntrip.description %></p>
             </div>
-            <%= link_to '', horntrips_path, class:"card-new-link" %>
+            <%= link_to '', horntrip_booking_path(user_booking.horntrip_id, user_booking.id), class:"card-new-link" %>
           </div>
+        </div>
         </div>
       <% end %>
     <% end %>

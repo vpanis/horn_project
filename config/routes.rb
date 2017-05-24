@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :horntrips do
     resources :bookings, only: [:index, :show, :new, :create, :destroy]
   end
+
   get "dashboard" => 'horntrips#dashboard'
   get "trips" => 'bookings#trips'
   mount Attachinary::Engine => "/attachinary"
