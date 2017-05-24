@@ -18,14 +18,15 @@
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
-
-      <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
-        </div>
+      <div class="navbar-wagon-item">
+      <% if current_user.is_mike %>
+        <%= link_to t(".sign_in", default: "Guide"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <%#= link_to t(".sign_in", default: "My trips"), mytrips_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <% else %>
+        <%= link_to t(".sign_in", default: "become Mike"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% end %>
+      </div>
+
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -49,10 +50,6 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Mike"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
-      <%= link_to t(".sign_in", default: "Survivor"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <% end %>
