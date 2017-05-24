@@ -1,8 +1,25 @@
-<div class="container">
-  <h1>Your trip</h1>
+<div class="container marged-top">
+  <h2 class="text-center sm-marged-bottom">Your trips</h2>
   <div class="row">
-    <div class="col-xs-12 col-sm-4">
-
+    <div class="col-xs-12 col-sm-4 sm-marged-bottom">
+      <div class="card-new text-center">
+          <h2>Create a new trip</h2>
+        <%= link_to '', new_horntrip_path, class:"card-new-link" %>
+      </div>
     </div>
+    <% @user_horntrips.each do |user_horntrip| %>
+    <div class="col-xs-12 col-sm-4 sm-marged-bottom">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(user_horntrip), crop: :scale %>');">
+        <div class="card-category"><span class="badge"><%= user_horntrip.bookings.size %></span></div>
+        <div class="card-description">
+          <h2><%= user_horntrip.title %></h2>
+          <p><%= user_horntrip.description %> <%= user_horntrip.user_id %></p>
+
+        </div>
+        <span class="badge"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></span>
+        <a class="card-link" href="#" ></a>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>

@@ -1,5 +1,6 @@
 class Horntrip < ApplicationRecord
   belongs_to :user
+  has_many :bookings
   has_attachment :photo
   validates :user, presence: true
   validates :title, presence:true
