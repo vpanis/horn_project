@@ -1,5 +1,5 @@
 <div class="container marged-top">
-  <h2 class="text-center sm-marged-bottom">Your trips</h2>
+  <h2 class="text-center sm-marged-bottom">Hi <%= set_username(current_user) %>! </h2>
   <div class="row">
     <div class="col-xs-12 col-sm-4 sm-marged-bottom">
       <div class="card-new text-center">
@@ -14,7 +14,6 @@
         <div class="card-description">
           <h2><%= user_horntrip.title %></h2>
           <p><%= user_horntrip.description %> <%= user_horntrip.user_id %></p>
-
         </div>
         <span class="badge"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></span>
         <a class="card-link" href="#" ></a>
