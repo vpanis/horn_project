@@ -4,21 +4,31 @@ class HorntripsController < ApplicationController
 
   def index
     if params[:horntrip].nil?
-      @horntrips = Horntrip.all
+      @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
       params[:horntrip] = Hash.new
     elsif (params[:horntrip][:is_outside] == "0") && (params[:horntrip][:is_dirty] == "0") && (params[:horntrip][:is_food] == "0")
-      @horntrips = Horntrip.all
+      @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
     else
-      @location = params[:horntrip][:q]
+      @address = params[:horntrip][:q]
       @horntrips = Horntrip.where("is_outside = ?
         OR is_dirty = ?
         OR is_food = ?", params[:horntrip][:is_outside] == "1", params[:horntrip][:is_dirty] == "1", params[:horntrip][:is_food] == "1")
-      .where("location ILIKE ?", "%#{params[:horntrip][:q]}%")
+      .where("address ILIKE ?", "%#{params[:horntrip][:q]}%")
+      .where.not(latitude: nil, longitude: nil)
+    end
+
+    @hash = Gmaps4rails.build_markers(@horntrips) do |horntrip, marker|
+       marker.lat horntrip.latitude
+       marker.lng horntrip.longitude
     end
   end
 
   def show
     @booking = Booking.new
+    @hash = Gmaps4rails.build_markers(@horntrip) do |horntrip, marker|
+       marker.lat horntrip.latitude
+       marker.lng horntrip.longitude
+    end
   end
 
   def new
@@ -58,7 +68,7 @@ class HorntripsController < ApplicationController
   private
 
   def horntrip_params
-    params.require(:horntrip).permit(:title, :location, :price, :starting_day, :length, :description, :is_outside, :is_dirty, :is_food, :photo)
+    params.require(:horntrip).permit(:title, :address, :price, :starting_day, :length, :description, :is_outside, :is_dirty, :is_food, :photo)
   end
 
   def set_horntrip

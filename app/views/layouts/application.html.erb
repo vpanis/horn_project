@@ -17,146 +17,17 @@
     <%= yield %>
 
     <!-- Javascript script -->
-    <%= javascript_include_tag 'application' %>
+    <!-- Yield after_js for Google maps -->
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
+    <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
+
+    <%= javascript_include_tag "application" %>
 
     <!-- Cloudinary script -->
-    <%= cloudinary_js_config %> <!-- Append this after the main `javascript_include_tag`. -->
+    <%= cloudinary_js_config %>
 
-    <!-- Google map script -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9IiojkvdNyDU7FuDW2-wcRq55uMKPBbw"></script>
-    <script type="text/javascript">
-    var myLatlng = new google.maps.LatLng(-2.163106, -55.126648);
-    var myOptions = {
-      zoom: 16,
-      center: myLatlng,
-      scrollwheel: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      styles: [
-    {
-        "featureType": "administrative",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "hue": "#0066ff"
-            },
-            {
-                "saturation": 74
-            },
-            {
-                "lightness": 100
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            },
-            {
-                "weight": 0.6
-            },
-            {
-                "saturation": -85
-            },
-            {
-                "lightness": 61
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            },
-            {
-                "color": "#5f94ff"
-            },
-            {
-                "lightness": 26
-            },
-            {
-                "gamma": 5.86
-            }
-        ]
-    }
-]
-    };
-    var map = new google.maps.Map(document.getElementById('map'), myOptions);
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: "Your adventure starts here!"
-    });
-    </script>
+    <%= yield(:after_js) %>
+
   </body>
 </html>
