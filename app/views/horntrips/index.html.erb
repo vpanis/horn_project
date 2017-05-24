@@ -11,7 +11,8 @@
             <p><%= horntrip.description %></p>
             <p><%= horntrip.user.email %></p>
           </div>
-          <img class="card-user avatar" src="images/papillard.jpeg">
+          <%= cl_image_tag set_horntrip_image(horntrip), class: "card-user avatar" %>
+ <!--          <img class="card-user avatar" src="images/papillard.jpeg"> -->
           <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
           <!-- <a class="card-link" href="#" ></a> -->
         </div>
