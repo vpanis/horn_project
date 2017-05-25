@@ -17,7 +17,7 @@
               <div class="skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_outside">
                 <span>
                   <p>Hunting</p>
-                  <i class="fa fa-bullseye <%='selected' if @horntrip.is_outside%>" aria-hidden="true"></i>
+                  <i class="fa fa-bullseye " aria-hidden="true"></i>
                 </span>
               </div>
               <div class="skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_dirty">
@@ -26,7 +26,7 @@
                 <i class="fa fa-compass" aria-hidden="true"></i>
               </span>
               </div>
-              <div class="skill-container" data-target="#horntrip_is_food">
+              <div class="skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_food">
               <span>
                 <p>Swiming</p>
                 <i class="fa fa-support" aria-hidden="true"></i>
