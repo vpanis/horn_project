@@ -7,7 +7,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
     <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
       <div class="form-inline text-center search-filter">
-        <%= f.input :q, as: "hidden", input_html: {value: @location} %>
+        <%= f.input :q, as: "hidden", input_html: {value: @address} %>
         <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
         <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
         <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<h3 class="readme-header text-center">HornTrips near <%= @location %> </h3>
+<h3 class="readme-header text-center">HornTrips near <%= @address %> </h3>
 
 <div class="container">
   <div class="row">
@@ -37,3 +37,28 @@
     <% end %>
   </div>
 </div>
+
+<div class="container">
+  <div id="map-index" style="width: 100%; height: 100%;"></div>
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map-index' } }, function() {
+        provider: {
+          scrollwheel :false
+        }
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>
