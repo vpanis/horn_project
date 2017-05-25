@@ -2,6 +2,8 @@
   <%= "HornTrips" %>
 <% end %>
 
+<div id="map" style="width: 100%; height: 100%;"></div>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
@@ -38,15 +40,12 @@
   </div>
 </div>
 
-<div class="container">
-  <div id="map-index" style="width: 100%; height: 100%;"></div>
-</div>
 
 <% content_for(:after_js) do %>
   <%= javascript_tag do %>
     $(document).ready(function() {
       var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map-index' } }, function() {
+      handler.buildMap({ internal: { id: 'map' } }, function() {
         provider: {
           scrollwheel :false
         }
