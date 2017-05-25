@@ -37,7 +37,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <% @horntrips.last(3).each do |horntrip| %>
+    <% @horntrips.where.not(user_id: current_user).last(3).each do |horntrip| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card home-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
           <div class="card-description">

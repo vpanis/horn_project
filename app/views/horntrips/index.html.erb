@@ -22,7 +22,7 @@
   <div class="row">
     <div class="content-wrapper col-xs-9 col-sm-9">
   <h3 class="readme-header text-center">HornTrips <%= @address == "" ? "" : "near #{@address}" %> </h3>
-      <% @horntrips.each do |horntrip| %>
+      <% @horntrips.where.not(user_id: current_user).each do |horntrip| %>
         <div class="col-xs-12 col-sm-4">
           <div class="card sm-marged-bottom" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
             <div class="card-description">
