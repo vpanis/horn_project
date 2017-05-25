@@ -31,7 +31,6 @@ class BookingsController < ApplicationController
 
   def trips
     @user_bookings = current_user.bookings
-    raise
   end
 
   def confirm_booking
