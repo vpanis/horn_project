@@ -20,7 +20,7 @@
           <p><%= user_horntrip.description %> <%= user_horntrip.user_id %></p>
         </div>
         <span class="badge"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></span>
-        <a class="card-link" href="/horntrips/:horntrip_id/bookings" ></a>
+        <%= link_to "", horntrip_bookings_path(user_horntrip), class: "card-link" %>
       </div>
     </div>
     <% end %>

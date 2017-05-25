@@ -1,9 +1,9 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :confirm_booking, :cancel_booking]
 
   def index
-    @bookings = Booking.all.where(user: current_user)
-
+    @horntrip = Horntrip.find(params[:horntrip_id])
+    @bookings = Booking.where(horntrip_id: params[:horntrip_id])
   end
 
   def show
@@ -31,6 +31,28 @@ class BookingsController < ApplicationController
 
   def trips
     @user_bookings = current_user.bookings
+  end
+
+  def confirm_booking
+    @horntrip = Horntrip.find(params[:horntrip_id])
+    if @booking.status == "pending"
+      @booking.status = "confirmed"
+    else
+      @booking.status = "pending"
+    end
+    @booking.save
+    redirect_to horntrip_bookings_path(@horntrip)
+  end
+
+  def cancel_booking
+    @horntrip = Horntrip.find(params[:horntrip_id])
+    if @booking.status == "pending"
+      @booking.status = "cancelled"
+    else
+      @booking.status = "pending"
+    end
+    @booking.save
+    redirect_to horntrip_bookings_path(@horntrip)
   end
 
   private
