@@ -8,4 +8,5 @@
 //= require gmaps/google
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//= require badge.js
 //= require_tree .
