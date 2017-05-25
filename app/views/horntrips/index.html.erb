@@ -4,7 +4,7 @@
 
 <div class="container horntrip-index padded-top">
   <div class="row">
-    <div class="col-xs-12 padded-top only-small-screen marged-bottom">
+    <div class="col-xs-12 padded-top only-small-screen">
       <div class="row">
         <div class="col-xs-12 search-filters">
         <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
@@ -19,7 +19,6 @@
         </div>
       </div>
       <h3 class="readme-header text-center">HornTrips <%= @address == "" || @address.nil? ? "" : "near #{@address}" %> </h3>
-      <div id="map-index-small" style="width: 100%; height: 200px;"></div>
     </div>
 
 
@@ -184,26 +183,6 @@
           handler.getMap().setZoom(14);
         }
       });
-
-      var handler = Gmaps.build('Google');
-      handler.buildMap({
-        internal: { id: 'map-index-small' },
-        provider: {
-          scrollwheel :false,
-          styles: styles
-        }
-      }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
     });
-
   <% end %>
 <% end %>
-
