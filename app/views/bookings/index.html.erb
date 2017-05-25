@@ -2,7 +2,6 @@
   <%= "Bookings" %>
 <% end %>
 
-
 <div class="banner-bookings" style="background-color: #B3B3B3">
 
   <div class="container-fluid">
@@ -41,7 +40,7 @@
   </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid xmarged">
   <div class="row">
     <div class="type-bookings">
       <div class="col-xs-12 col-md-4 one-type-bookings">
@@ -49,7 +48,7 @@
         <% @bookings.where(status: "cancelled").each do |booking| %>
           <div class="card card-bookings">
             <div class="card-email text-center"><%= booking.user.email %></div>
-            <div class="card-avatar"><%= cl_image_tag booking.user.photo, class: "avatar" %>
+            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
               <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put do %>
@@ -65,7 +64,7 @@
         <% @bookings.where(status: "pending").each do |booking| %>
           <div class="card card-bookings">
             <div class="card-email text-center"><%= booking.user.email %></div>
-            <div class="card-avatar"><%= cl_image_tag booking.user.photo, class: "avatar" %>
+            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
               <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "cancel" do %>
@@ -84,7 +83,7 @@
         <% @bookings.where(status: "confirmed").each do |booking| %>
           <div class="card card-bookings">
             <div class="card-email text-center"><%= booking.user.email %></div>
-            <div class="card-avatar"><%= cl_image_tag booking.user.photo, class: "avatar" %>
+            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
               <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch  do %>
@@ -97,13 +96,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-

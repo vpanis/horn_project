@@ -19,7 +19,7 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <% if current_user.is_mike %>
+      <% if current_user.horntrips.count > 0 %>
         <%= link_to t(".sign_in", default: "Trips"), trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to t(".sign_in", default: "Guide"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% else %>

@@ -17,12 +17,12 @@
   i, p{
     color: #2AB27B;
   }
-
   border: 2px solid #2AB27B;
   justify-content: space-around;
-  span {
-    text-align: center;
-  }
+    span {
+      text-align: center;
+      color: #2AB27B;
+    }
 }
 
 .sm-skill-container {
@@ -48,5 +48,4 @@
  color: white;
  i, p{
     color: white;
-  }
 }

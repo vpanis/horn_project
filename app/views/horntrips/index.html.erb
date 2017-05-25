@@ -2,27 +2,29 @@
   <%= "HornTrips" %>
 <% end %>
 
-<div class="container navbar-index-fixed">
+<div class="container horntrip-index padded-top">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
-    <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
-      <div class="form-inline text-center search-filter">
-        <%= f.input :q, as: "hidden", input_html: {value: @address} %>
-        <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
-        <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
-        <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
-        <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+    <div class="col-xs-12 padded-top only-small-screen">
+      <div class="row">
+        <div class="col-xs-12 search-filters">
+        <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
+          <div class="form-inline text-center search-filter">
+            <%= f.input :q, as: "hidden", input_html: {value: @address} %>
+            <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
+            <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
+            <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
+            <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+          </div>
+        <% end %>
+        </div>
       </div>
-    <% end %>
+      <h3 class="readme-header text-center">HornTrips <%= @address == "" || @address.nil? ? "" : "near #{@address}" %> </h3>
     </div>
-  </div>
-</div>
 
-<div class="container horntrip-index">
-  <div class="row">
-    <div class="content-wrapper col-xs-9 col-sm-9">
-  <h3 class="readme-header text-center">HornTrips <%= @address == "" ? "" : "near #{@address}" %> </h3>
-      <% @horntrips.each do |horntrip| %>
+
+    <div class="content-wrapper col-xs-12 col-sm-9">
+      <h3 class="readme-header text-center only-large-screen">HornTrips <%= @address == "" || @address.nil? ? "" : "near #{@address}" %> </h3>
+      <% @horntrips.where.not(user_id: current_user).each do |horntrip| %>
         <div class="col-xs-12 col-sm-4">
           <div class="card sm-marged-bottom" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
             <div class="card-description">
@@ -36,21 +38,22 @@
         </div>
       <% end %>
     </div>
-    <div class="col-xs-3 col-sm-3 side-nav padded-top">
-    <div class="row">
-      <div class="col-xs-12 search-filters">
-      <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
-        <div class="form-inline text-center search-filter">
-          <%= f.input :q, as: "hidden", input_html: {value: @address} %>
-          <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
-          <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
-          <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
-          <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+
+    <div class="col-xs-3 col-sm-3 side-nav padded-top only-large-screen">
+      <div class="row">
+        <div class="col-xs-12 search-filters">
+        <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
+          <div class="form-inline text-center search-filter">
+            <%= f.input :q, as: "hidden", input_html: {value: @address} %>
+            <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
+            <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
+            <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
+            <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+          </div>
+        <% end %>
         </div>
-      <% end %>
       </div>
-    </div>
-    <div id="map-index" style="width: 100%; height: 50em;"></div>
+      <div id="map-index" style="width: 100%; height: 50em;"></div>
     </div>
   </div>
 </div>
