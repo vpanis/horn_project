@@ -20,6 +20,7 @@ class HorntripsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@horntrips) do |horntrip, marker|
        marker.lat horntrip.latitude
        marker.lng horntrip.longitude
+       marker.picture(url: "http://maps.google.com/mapfiles/kml/pal2/icon12.png", width: 30, height: 30)
     end
   end
 
@@ -28,6 +29,7 @@ class HorntripsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@horntrip) do |horntrip, marker|
        marker.lat horntrip.latitude
        marker.lng horntrip.longitude
+       marker.picture(url: "http://maps.google.com/mapfiles/kml/pal2/icon12.png", width: 30, height: 30)
     end
   end
 
