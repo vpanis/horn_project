@@ -1,7 +1,65 @@
-.bookings-banner {
+.banner-bookings {
   height: 200px;
+  color: white;
+  padding: 20px;
+}
+.banner-bookings-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.banner-bookings-card {
+  width: 150px;
+  height: 150px;
+  box-shadow: 10px 10px 5px #888888;
+  left: 30%;
+}
+.img-price {
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 10px 10px 5px #888888;
+  color: black;
+  display: inline-block;
+  padding: 30px;
 }
 .type-bookings {
   display: flex;
   justify-content: space-around;
+  margin-top: 30px;
+}
+.one-type-bookings {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px #888888;
+  display: block;
+  margin: 20px;
+}
+.card-bookings {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #E2E2E2;
+  color: black;
+  border-radius: 10px;
+}
+.card-icons {
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+}
+.fa {
+  color: grey;
+}
+.fa-check:hover {
+  color: green;
+}
+.fa-times:hover {
+  color: red;
+}
+.fa-arrow-left:hover {
+  color: black;
+}
+.fa-arrow-right:hover {
+  color: black;
 }
