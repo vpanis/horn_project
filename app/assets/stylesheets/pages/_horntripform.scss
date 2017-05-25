@@ -14,8 +14,9 @@
   display: flex;
   align-items: center;
   border-radius: 50%;
-    p,i{color: #2AB27B;
-   }
+  i, p{
+    color: #2AB27B;
+  }
   border: 2px solid #2AB27B;
   justify-content: space-around;
     span {
@@ -44,6 +45,7 @@
 
 .selected {
  background-color: #2AB27B;
- p,i{color: white;
- }
+ color: white;
+ i, p{
+    color: white;
 }
