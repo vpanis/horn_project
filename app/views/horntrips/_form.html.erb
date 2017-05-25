@@ -12,9 +12,31 @@
           <%= f.input :price, required: true %>
           <%= f.input :starting_day, required: true, as: :string, input_html: { class: "datepicker" } %>
           <%= f.label :skills %>
-          <%= f.input :is_outside, as: :boolean, required: false  %>
-          <%= f.input :is_dirty, as: :boolean, required: false  %>
-          <%= f.input :is_food, as: :boolean, required: false  %>
+          <div class="row">
+            <div class="skills-container">
+              <div class="skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_outside">
+                <span>
+                  <p>Hunting</p>
+                  <i class="fa fa-bullseye <%='selected' if @horntrip.is_outside%>" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_dirty">
+              <span>
+                <p>Orientate</p>
+                <i class="fa fa-compass" aria-hidden="true"></i>
+              </span>
+              </div>
+              <div class="skill-container" data-target="#horntrip_is_food">
+              <span>
+                <p>Swiming</p>
+                <i class="fa fa-support" aria-hidden="true"></i>
+              </span>
+              </div>
+            </div>
+           </div>
+          <%= f.input :is_outside, as: :hidden, required: false %>
+          <%= f.input :is_dirty, as: :hidden, required: false  %>
+          <%= f.input :is_food, as: :hidden, required: false %>
           <%= f.input :length, label: "Length (in number of days)", required: true %>
         </div>
         <div class="form-actions text-center">
