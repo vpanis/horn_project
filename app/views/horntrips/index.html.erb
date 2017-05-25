@@ -2,7 +2,7 @@
   <%= "HornTrips" %>
 <% end %>
 
-<div class="container">
+<div class="container navbar-index-fixed">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
     <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
@@ -18,28 +18,41 @@
   </div>
 </div>
 
-<h3 class="readme-header text-center">HornTrips near <%= @address %> </h3>
-
-<div class="container">
+<div class="container horntrip-index">
   <div class="row">
-    <% @horntrips.each do |horntrip| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
-          <div class="card-description">
-            <h2><%= horntrip.title %></h2>
-            <p><%= horntrip.description %></p>
-            <p><%= horntrip.user.email %></p>
+    <div class="content-wrapper col-xs-9 col-sm-9">
+  <h3 class="readme-header text-center">HornTrips <%= @address == "" ? "" : "near #{@address}" %> </h3>
+      <% @horntrips.each do |horntrip| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card sm-marged-bottom" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
+            <div class="card-description">
+              <h2><%= horntrip.title %></h2>
+              <p><%= horntrip.description %></p>
+              <p><%= horntrip.user.email %></p>
+            </div>
+            <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
+            <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
           </div>
-          <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
-          <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
         </div>
+      <% end %>
+    </div>
+    <div class="col-xs-3 col-sm-3 side-nav">
+    <div class="row">
+      <div class="col-xs-12 search-filters">
+      <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
+        <div class="form-inline text-center search-filter">
+          <%= f.input :q, as: "hidden", input_html: {value: @address} %>
+          <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
+          <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
+          <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
+          <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+        </div>
+      <% end %>
       </div>
-    <% end %>
+    </div>
+    <div id="map-index" style="width: 100%; height: 50em;"></div>
+    </div>
   </div>
-</div>
-
-<div class="container">
-  <div id="map-index" style="width: 100%; height: 100%;"></div>
 </div>
 
 <% content_for(:after_js) do %>
