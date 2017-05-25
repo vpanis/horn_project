@@ -5,6 +5,10 @@
  * ------------------------------------- */
 
 // Paddings
+.padded-top {
+  padding-top: 30px;
+}
+
 .padded {
   padding-top: 5em;
   padding-bottom: 5em;
@@ -20,6 +24,9 @@
 
 .sm-marged-bottom {
   margin-bottom: 20px;
+}
+.marged-right {
+  margin-right: 10px;
 }
 
 // Backgrounds
