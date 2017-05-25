@@ -6,20 +6,25 @@ class HorntripsController < ApplicationController
     if params[:horntrip].nil?
       @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
       params[:horntrip] = Hash.new
-    elsif (params[:horntrip][:is_outside] == "0") && (params[:horntrip][:is_dirty] == "0") && (params[:horntrip][:is_food] == "0")
+    elsif params[:horntrip][:q] ==""
       @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
+    elsif ((params[:horntrip][:is_outside] == "0" || params[:horntrip][:is_outside].nil?) && (params[:horntrip][:is_dirty] == "0" || params[:horntrip][:is_dirty].nil?) && (params[:horntrip][:is_food] == "0" || params[:horntrip][:is_food].nil?))
+      @address = params[:horntrip][:q]
+      @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
+      .near(@address, 90)
     else
       @address = params[:horntrip][:q]
-      @horntrips = Horntrip.where("is_outside = ?
-        OR is_dirty = ?
-        OR is_food = ?", params[:horntrip][:is_outside] == "1", params[:horntrip][:is_dirty] == "1", params[:horntrip][:is_food] == "1")
-      .where("address ILIKE ?", "%#{params[:horntrip][:q]}%")
-      .where.not(latitude: nil, longitude: nil)
+      @horntrips = Horntrip.where.not(latitude: nil, longitude: nil)
+      .near(@address, 90)
+      params[:horntrip][:is_outside] == "1" ? @horntrips = @horntrips.where("is_outside = ?", params[:horntrip][:is_outside]) : @horntrips
+      params[:horntrip][:is_dirty] == "1" ? @horntrips = @horntrips.where("is_dirty = ?", params[:horntrip][:is_dirty]) : @horntrips
+      params[:horntrip][:is_food] == "1" ? @horntrips = @horntrips.where("is_food = ?", params[:horntrip][:is_food]) : @horntrips
     end
 
     @hash = Gmaps4rails.build_markers(@horntrips) do |horntrip, marker|
        marker.lat horntrip.latitude
        marker.lng horntrip.longitude
+       marker.picture(url: "http://maps.google.com/mapfiles/kml/pal2/icon12.png", width: 30, height: 30)
     end
   end
 
@@ -28,6 +33,7 @@ class HorntripsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@horntrip) do |horntrip, marker|
        marker.lat horntrip.latitude
        marker.lng horntrip.longitude
+       marker.picture(url: "http://maps.google.com/mapfiles/kml/pal2/icon12.png", width: 30, height: 30)
     end
   end
 
