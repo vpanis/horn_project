@@ -20,13 +20,16 @@
   box-shadow: 10px 10px 5px #888888;
   left: 30%;
 }
-.img-price {
+.banner-bookings-content-right {
   background-color: white;
-  border-radius: 50%;
+  border-radius: 10px;
   box-shadow: 10px 10px 5px #888888;
-  color: black;
+  color: grey;
   display: inline-block;
-  padding: 30px;
+  padding: 20px;
+}
+.xmarged {
+  margin-top: 250px;
 }
 .type-bookings {
   display: flex;
@@ -70,6 +73,14 @@
 .fa-times {
   position: absolute;
   right: 20px;
+}
+.fa-check.middle {
+  position: absolute;
+  left: 60px;
+}
+.fa-times.middle {
+  position: absolute;
+  right: 60px;
 }
 .fa-check:hover {
   color: green;
