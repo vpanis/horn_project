@@ -1,30 +1,32 @@
-<div class="banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%), url( <%= image_path 'mike_banner.png' %> );">
+<div class="padded-top">
+  <div class="banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%), url( <%= image_path 'mike_banner.png' %> );">
 
-  <div class="container">
-    <div class="row">
+    <div class="container">
+      <div class="row">
 
-      <div class="banner-content">
+        <div class="banner-content">
 
-        <div class="col-md-6 col-md-offset-6">
-          <h1 class="banner-title"><strong>Are you sure to be wild ?</strong></h1>
-        </div>
-
-        <div class="col-md-5 col-md-offset-7">
-          <div class="banner-text">
-            <h2 class="banner-brand"><strong>HornHub</strong></h2>
-            <p class="banner-tagline">The hotest experience of extreme tourism.</p>
+          <div class="col-md-6 col-md-offset-6">
+            <h1 class="banner-title"><strong>Are you sure to be wild ?</strong></h1>
           </div>
-        </div>
 
-        <div class="col-md-6 col-md-offset-6">
-          <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
-            <div class="form-group banner-form-group">
-              <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+          <div class="col-md-5 col-md-offset-7">
+            <div class="banner-text">
+              <h2 class="banner-brand"><strong>HornHub</strong></h2>
+              <p class="banner-tagline">The hotest experience of extreme tourism.</p>
             </div>
-            <%= submit_tag("Search HornTrips !", options = {class: "btn btn-primary banner-cta"}) %>
-          <% end %>
-        </div>
+          </div>
 
+          <div class="col-md-6 col-md-offset-6">
+            <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
+              <div class="form-group banner-form-group">
+                <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+              </div>
+              <%= submit_tag("Search HornTrips !", options = {class: "btn btn-primary banner-cta"}) %>
+            <% end %>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -38,15 +40,13 @@
     <% @horntrips.last(3).each do |horntrip| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card home-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
-          <div class="card-category"><%= horntrip.title %></div>
           <div class="card-description">
-            <h2>Some stuff</h2>
+            <h2><%= horntrip.title %></h2>
             <p><%= horntrip.description %></p>
-            <p><%= horntrip.user.email %></p>
+            <p><%= set_username(horntrip.user) %></p>
           </div>
- <!--          <img class="card-user avatar" src="images/papillard.jpeg"> -->
+          <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
           <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
-          <!-- <a class="card-link" href="#" ></a> -->
         </div>
       </div>
     <% end %>

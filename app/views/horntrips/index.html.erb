@@ -2,12 +2,12 @@
   <%= "HornTrips" %>
 <% end %>
 
-<div class="container">
+<div class="container navbar-index-fixed">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3 search-filters">
     <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
       <div class="form-inline text-center search-filter">
-        <%= f.input :q, as: "hidden", input_html: {value: @location} %>
+        <%= f.input :q, as: "hidden", input_html: {value: @address} %>
         <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
         <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
         <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
@@ -18,25 +18,168 @@
   </div>
 </div>
 
-<h3 class="readme-header text-center">HornTrips near <%= @location %> </h3>
-
-<div class="container">
+<div class="container horntrip-index">
   <div class="row">
-    <% @horntrips.each do |horntrip| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
-          <div class="card-category"><%= horntrip.title %></div>
-          <div class="card-description">
-            <h2>Some stuff</h2>
-            <p><%= horntrip.description %></p>
-            <p><%= horntrip.user.email %></p>
+    <div class="content-wrapper col-xs-9 col-sm-9">
+  <h3 class="readme-header text-center">HornTrips <%= @address == "" ? "" : "near #{@address}" %> </h3>
+      <% @horntrips.each do |horntrip| %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card sm-marged-bottom" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
+            <div class="card-description">
+              <h2><%= horntrip.title %></h2>
+              <p><%= horntrip.description %></p>
+              <p><%= horntrip.user.email %></p>
+            </div>
+            <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
+            <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
           </div>
-          <%= cl_image_tag set_horntrip_image(horntrip), class: "card-user avatar" %>
- <!--          <img class="card-user avatar" src="images/papillard.jpeg"> -->
-          <%= link_to "", horntrip_path(horntrip), class: "card-link" %>
-          <!-- <a class="card-link" href="#" ></a> -->
         </div>
+      <% end %>
+    </div>
+    <div class="col-xs-3 col-sm-3 side-nav padded-top">
+    <div class="row">
+      <div class="col-xs-12 search-filters">
+      <%= simple_form_for :horntrip, :method => 'get', :url => horntrips_path, :html => {:class => '.search-filters'} do |f| %>
+        <div class="form-inline text-center search-filter">
+          <%= f.input :q, as: "hidden", input_html: {value: @address} %>
+          <div class="search-filter-item"><%= f.input :is_outside, label: "Outside", as: :boolean, input_html: {checked: params[:horntrip][:is_outside] == "1"} %></div>
+          <div class="search-filter-item"><%= f.input :is_dirty, label: "Dirty", as: :boolean, input_html: {checked: params[:horntrip][:is_dirty] == "1"} %></div>
+          <div class="search-filter-item"><%= f.input :is_food, label: "Hunt yourself", as: :boolean, input_html: {checked: params[:horntrip][:is_food] == "1"} %></div>
+          <%= f.button :submit, "Filter", class:"btn btn-primary"%>
+        </div>
+      <% end %>
       </div>
-    <% end %>
+    </div>
+    <div id="map-index" style="width: 100%; height: 50em;"></div>
+    </div>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var styles = [
+    {
+        "featureType": "landscape",
+        "stylers": [
+            {
+                "hue": "#FFBB00"
+            },
+            {
+                "saturation": 43.400000000000006
+            },
+            {
+                "lightness": 37.599999999999994
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "stylers": [
+            {
+                "hue": "#FFC200"
+            },
+            {
+                "saturation": -61.8
+            },
+            {
+                "lightness": 45.599999999999994
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "stylers": [
+            {
+                "hue": "#FF0300"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 51.19999999999999
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "stylers": [
+            {
+                "hue": "#FF0300"
+            },
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 52
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "hue": "#0078FF"
+            },
+            {
+                "saturation": -13.200000000000003
+            },
+            {
+                "lightness": 2.4000000000000057
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "hue": "#00FF6A"
+            },
+            {
+                "saturation": -1.0989010989011234
+            },
+            {
+                "lightness": 11.200000000000017
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    }
+];
+
+      var handler = Gmaps.build('Google');
+      handler.buildMap({
+        internal: { id: 'map-index' },
+        provider: {
+          scrollwheel :false,
+          styles: styles
+        }
+      }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  <% end %>
+<% end %>

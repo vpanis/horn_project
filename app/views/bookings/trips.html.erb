@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container padded-top">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="marged-top marged-bottom">
@@ -22,6 +22,7 @@
             <h2><%= user_booking.horntrip.title %></h2>
             <p><%= user_booking.horntrip.description %></p>
             </div>
+            <%= cl_image_tag set_user_image(user_booking.horntrip.user), class: "card-user avatar" %>
             <%= link_to '', horntrip_booking_path(user_booking.horntrip_id, user_booking.id), class:"card-new-link" %>
           </div>
         </div>
