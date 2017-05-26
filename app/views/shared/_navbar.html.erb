@@ -20,11 +20,19 @@
     <% if user_signed_in? %>
 
       <% if current_user.horntrips.count > 0 %>
-        <%= link_to t(".sign_in", default: "Trips"), trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
-        <%= link_to t(".sign_in", default: "Guide"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <div class="<%= 'active' if current_page?(trips_path) %>">
+          <%= link_to t(".sign_in", default: "Trips"), trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </div>
+        <div class="<%= 'active' if current_page?(dashboard_path) %>">
+          <%= link_to t(".sign_in", default: "Guide"), dashboard_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </div>
       <% else %>
-        <%= link_to t(".sign_in", default: "Trips"), trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
-        <%= link_to t(".sign_in", default: "Become a guide"), new_horntrip_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        <div class="<%= 'active' if current_page?(trips_path) %>">
+          <%= link_to t(".sign_in", default: "Trips"), trips_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </div>
+        <div class="<%= 'active' if current_page?(new_horntrip_path) %>">
+          <%= link_to t(".sign_in", default: "Become a guide"), new_horntrip_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </div>
       <% end %>
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
