@@ -6,7 +6,11 @@
           <li><a href=""><i class="fa fa-youtube"></i></a></li>
           <li><a href=""><i class="fa fa-instagram"></i></a></li>
           <li><a href=""><i class="fa fa-facebook"></i></a></li>
-          <li><a href=""><i class="fa fa-twitter"></i></a></li>
+          <li>
+          <%= link_to twitter_path do %>
+            <i class="fa fa-twitter"></i>
+          <% end %>
+          </li>
         </ul>
       </div>
     </footer>
