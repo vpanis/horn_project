@@ -16,17 +16,35 @@
                 <strong>Bookings for <span class="highlight"><%= link_to @horntrip.title, horntrip_path(@horntrip.id)%></span></strong>
               </h2>
             </div>
-            <ul class="list-inline">HornTrip features:
-              <% if !@horntrip.is_outside.nil? %>
-                <%= @horntrip.is_outside ? "Outside" : "Inside" %>
+          <ul class="list-inline">
+            <li>
+              <% if @horntrip.is_outside%>
+                <div class="sm-skill-container <%='selected' if @horntrip.is_outside%>" data-target="#horntrip_is_outside">
+                  <span>
+                    <i class="fa fa-bullseye" aria-hidden="true"></i>
+                  </span>
+                </div>
               <% end %>
-              <% if !@horntrip.is_outside.nil? %>
-                <%= @horntrip.is_dirty ? "Dirty" : "Clean" %>
+            </li>
+            <li>
+              <% if @horntrip.is_dirty%>
+                <div class="sm-skill-container <%='selected' if @horntrip.is_dirty%>" data-target="#horntrip_is_dirty">
+                  <span>
+                    <i class="fa fa-compass" aria-hidden="true"></i>
+                  </span>
+                </div>
               <% end %>
-              <% if !@horntrip.is_outside.nil? %>
-                <%= @horntrip.is_food ? "Food" : "No food" %>
+            </li>
+            <li>
+              <% if @horntrip.is_food%>
+                <div class="sm-skill-container <%='selected' if @horntrip.is_food%>" data-target="#horntrip_is_food">
+                  <span>
+                    <i class="fa fa-support" aria-hidden="true"></i>
+                  </span>
+                </div>
               <% end %>
-            </ul>
+            </li>
+          </ul>
           </div>
           <div class="col-xs-12 col-md-4">
             <div class="banner-bookings-content-right">
@@ -51,8 +69,8 @@
               </div>
               <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
               </div>
-              <div class="card-icons">
-                <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn-primary" do %>
+              <div class="card-icons text-center">
+                <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "" do %>
                   <i class="fa fa-check" aria-hidden="true"></i>
                 <% end %>
               </div>
@@ -68,13 +86,13 @@
                 <%= set_username(booking.user) %> (<%= set_level(booking.user) %>)
               </div>
               <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %></div>
-              <div class="card-icons">
-              <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn-primary" do %>
-                <i class="fa fa-times" aria-hidden="true"></i>
-              <% end %>
-              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn-primary" do %>
-                <i class="fa fa-check" aria-hidden="true"></i>
-              <% end %>
+              <div class="card-icons text-center">
+                <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "" do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+                <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "" do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -89,11 +107,10 @@
               </div>
               <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
               </div>
-              <div class="card-icons">
-              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn-primary cancel" do %>
+              <div class="card-icons text-center">
+              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "" do %>
                 <i class="fa fa-times" aria-hidden="true"></i>
               <% end %>
-
               </div>
             </div>
           <% end %>
