@@ -6,7 +6,7 @@
     </div>
     <div class="row">
     <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
-        <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+      <%= text_field_tag("horntrip[q]", params[:horntrip] ? params[:horntrip][:q] : "", options = {placeholder: "Enter a location", class: "form-control form-control-search", id: "navbar_input"}) %>
         <%= submit_tag("Browse adventures", options = {class: "btn btnhome banner-cta"}) %>
     <% end %>
     </div>
