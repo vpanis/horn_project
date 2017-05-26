@@ -19,8 +19,7 @@
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(user_booking.horntrip), crop: :scale %>');">
             <div class="card-category"><%= user_booking.status %></div>
             <div class="card-description">
-            <h2><%= user_booking.horntrip.title %></h2>
-            <p><%= user_booking.horntrip.description %></p>
+            <h1><%= user_booking.horntrip.title %></h1>
             </div>
             <%= cl_image_tag set_user_image(user_booking.horntrip.user), class: "card-user avatar" %>
             <%= link_to '', horntrip_booking_path(user_booking.horntrip_id, user_booking.id), class:"card-new-link" %>
