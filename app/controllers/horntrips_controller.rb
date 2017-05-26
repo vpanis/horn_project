@@ -48,7 +48,7 @@ class HorntripsController < ApplicationController
     if @horntrip.save
       @horntrip.user.is_mike = true
       @horntrip.user.save
-      redirect_to horntrips_path
+      redirect_to dashboard_path
     else
       render :new
     end
