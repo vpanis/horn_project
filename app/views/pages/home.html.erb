@@ -6,7 +6,7 @@
     </div>
     <div class="row">
     <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
-        <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+      <%= text_field_tag("horntrip[q]", params[:horntrip] ? params[:horntrip][:q] : "", options = {placeholder: "Enter a location", class: "form-control form-control-search", id: "navbar_input"}) %>
         <%= submit_tag("Browse adventures", options = {class: "btn btnhome banner-cta"}) %>
     <% end %>
     </div>
@@ -44,7 +44,6 @@
         <div class="card home-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
           <div class="card-description">
             <h2><%= horntrip.title %></h2>
-            <p><%= horntrip.description %></p>
             <p><%= set_username(horntrip.user) %></p>
           </div>
           <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
@@ -55,4 +54,19 @@
   </div>
 </div>
 
-
+<!-- Footer -->
+<footer class= "main-footer">
+  <p class="">© HornHub 2017</p>
+  <div class= "footer-right">
+    <ul class="list-inline">
+      <li><a href=""><i class="fa fa-youtube"></i></a></li>
+      <li><a href=""><i class="fa fa-instagram"></i></a></li>
+      <li><a href=""><i class="fa fa-facebook"></i></a></li>
+      <li>
+        <%= link_to twitter_path do %>
+          <i class="fa fa-twitter"></i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</footer>

@@ -5,40 +5,40 @@ User.destroy_all
 
 puts 'Creating Users...'
 
-mike                = User.create(email: "mike@gmail.com", password: '123456')
+mike                = User.create(email: "mike@gmail.com", password: '123456', username: "Official")
 url_mike            = "http://a.espncdn.com/photo/2011/0713/life_horn1x_600.jpg"
 mike.photo_url      = url_mike
-pokora              = User.create(email: "pokora@gmail.com", password: '123456')
+pokora              = User.create(email: "pokora@gmail.com", password: '123456', username: "Pokora")
 url_pokora          = "https://upload.wikimedia.org/wikipedia/commons/6/69/M._Pokora_2013.jpg"
 pokora.photo_url    = url_pokora
-achille             = User.create(email: "achille@gmail.com", password: '123456')
+achille             = User.create(email: "achille@gmail.com", password: '123456', username: "Achilou")
 url_achille         = "https://avatars2.githubusercontent.com/u/25741493?v=3"
 achille.photo_url   = url_achille
-alban               = User.create(email: "alban@gmail.com", password: '123456')
+alban               = User.create(email: "alban@gmail.com", password: '123456', username: "Alban")
 url_alban           = "https://avatars1.githubusercontent.com/u/25384564?v=3"
 alban.photo_url     = url_alban
-alexis              = User.create(email: "alexis@gmail.com", password: '123456')
+alexis              = User.create(email: "alexis@gmail.com", password: '123456', username: "Alexounet")
 url_alexis          = "https://avatars1.githubusercontent.com/u/25386153?v=3"
 alexis.photo_url    = url_alexis
-charles             = User.create(email: "charles@gmail.com", password: "123456")
+charles             = User.create(email: "charles@gmail.com", password: "123456", username: "Charles")
 url_charles         = "https://avatars2.githubusercontent.com/u/5082751?v=3"
 charles.photo_url   = url_charles
-mathieu             = User.create(email: "mathieu@gmail.com", password: "123456")
+mathieu             = User.create(email: "mathieu@gmail.com", password: "123456", username: "Matouuuuu")
 url_mathieu         = "https://avatars3.githubusercontent.com/u/25053116?v=3"
 mathieu.photo_url   = url_mathieu
-nicolas             = User.create(email: "nicolas@gmail.com", password: "123456")
+nicolas             = User.create(email: "nicolas@gmail.com", password: "123456", username: "Nico")
 url_nicolas         = "https://avatars1.githubusercontent.com/u/26443990?v=3"
 nicolas.photo_url   = url_nicolas
-vincent             = User.create(email: "vincent@gmail.com", password: "123456")
+vincent             = User.create(email: "vincent@gmail.com", password: "123456", username: "Vincent")
 url_vincent         = "https://avatars0.githubusercontent.com/u/25386031?v=3"
 vincent.photo_url   = url_vincent
-xavier              = User.create(email: "xavier@gmail.com", password: "123456")
+xavier              = User.create(email: "xavier@gmail.com", password: "123456", username: "xavvvvvv")
 url_xavier          = "https://avatars0.githubusercontent.com/u/1410430?v=3"
 xavier.photo_url    = url_xavier
-fred                = User.create(email: "fred@gmail.com", password: "123456")
+fred                = User.create(email: "fred@gmail.com", password: "123456", username: "Coquinou")
 url_fred            = "http://www.lesinrocks.com/wp-content/thumbnails/uploads/2010/12/FredericMitterrand6042-tt-width-604-height-466.jpg"
 fred.photo_url      = url_fred
-manu                = User.create(email: "manu@gmail.com", password: "123456")
+manu                = User.create(email: "manu@gmail.com", password: "123456", username: "Manu The Machine")
 url_manu            = "http://resize3-parismatch.ladmedia.fr/r/300,300,center-middle,ffffff/img/var/news/storage/images/paris-match/people-a-z/emmanuel-macron/14862769-3-fre-FR/Emmanuel-Macron.jpg"
 manu.photo_url      = url_manu
 

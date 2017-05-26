@@ -29,7 +29,6 @@
           <div class="card sm-marged-bottom" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(horntrip), crop: :scale %>');">
             <div class="card-description">
               <h2><%= horntrip.title %></h2>
-              <p><%= horntrip.description %></p>
               <p><%= horntrip.user.email %></p>
             </div>
             <%= cl_image_tag set_user_image(horntrip.user), class: "card-user avatar" %>
@@ -53,7 +52,7 @@
         <% end %>
         </div>
       </div>
-      <div id="map-index" style="width: 100%; height: 45em;"></div>
+      <div id="map-index" style="width: 100%; height: 49em;"></div>
     </div>
   </div>
 </div>
