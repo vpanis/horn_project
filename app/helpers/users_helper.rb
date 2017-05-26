@@ -6,4 +6,14 @@ module UsersHelper
   def set_username(user)
     user.username.nil? ? "Mike" : user.username
   end
+
+  def set_level(user)
+    if user.bookings.size == 0
+      "Rookie"
+    elsif user.bookings.size <= 2
+      "Survivor"
+    else
+      "Expert"
+    end
+  end
 end

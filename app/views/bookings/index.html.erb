@@ -2,103 +2,102 @@
   <%= "Bookings" %>
 <% end %>
 
-<div class="banner-bookings" style="background-color: #B3B3B3">
-
-  <div class="container-fluid">
+<div class="container">
+  <div class="banner-bookings">
     <div class="row">
-
       <div class="banner-bookings-content text-center">
-
-        <div class="col-md-12">
-          <div class="card banner-bookings-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(@horntrip), crop: :scale %>');">
+          <div class="col-xs-12 col-md-4">
+            <div class="card banner-bookings-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cl_image_path set_horntrip_image(@horntrip), crop: :scale %>');">
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="banner-bookings-text">
+              <h2>
+                <strong>Bookings for <span class="highlight"><%= link_to @horntrip.title, horntrip_path(@horntrip.id)%></span></strong>
+              </h2>
+            </div>
+            <ul class="list-inline">HornTrip features:
+              <% if !@horntrip.is_outside.nil? %>
+                <%= @horntrip.is_outside ? "Outside" : "Inside" %>
+              <% end %>
+              <% if !@horntrip.is_outside.nil? %>
+                <%= @horntrip.is_dirty ? "Dirty" : "Clean" %>
+              <% end %>
+              <% if !@horntrip.is_outside.nil? %>
+                <%= @horntrip.is_food ? "Food" : "No food" %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="banner-bookings-content-right">
+              <p class="banner-bookings-brand"><strong><span class="highlight">Price:</span></strong> <%= @horntrip.price %> €</p>
+              <p class="banner-bookings-brand"><strong><span class="highlight">Date:</span></strong> <%= @horntrip.starting_day.strftime(format="%b %d, %Y") %></p>
+              <p class="banner-bookings-brand"><strong><span class="highlight">Duration:</span></strong> <%= @horntrip.length %> <%= @horntrip.length > 1 ? "days" : "day" %></p>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-12">
-          <div class="banner-bookings-text">
-            <h2 class="banner-bookings-title"><strong>Here are the bookings for : " <%= @horntrip.title %> "</strong></h2>
-            <p class="banner-bookings-tagline">Description: <%= @horntrip.description %></p>
-          </div>
-          <ul class="list-inline">HornTrip features:
-            <% if !@horntrip.is_outside.nil? %>
-              <%= @horntrip.is_outside ? "Outside" : "Inside" %>
-            <% end %>
-            <% if !@horntrip.is_outside.nil? %>
-              <%= @horntrip.is_dirty ? "Dirty" : "Clean" %>
-            <% end %>
-            <% if !@horntrip.is_outside.nil? %>
-              <%= @horntrip.is_food ? "Food" : "No food" %>
-            <% end %>
-
-          </ul>
-        </div>
-        <div class="col-xs-12">
-          <div class="banner-bookings-content-right">
-            <p class="banner-bookings-brand">Price : <%= @horntrip.price %> €</p>
-            <p class="banner-bookings-brand">Date : <%= @horntrip.starting_day %></p>
-            <p class="banner-bookings-brand"><%= @horntrip.length %> <%= @horntrip.length > 1 ? "days" : "day" %></p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</div>
 
-<div class="container-fluid xmarged">
-  <div class="row">
-    <div class="type-bookings">
-      <div class="col-xs-12 col-md-4 one-type-bookings">
-        <h3 class="text-center" style="color: $red">Cancelled</h3>
-        <% @bookings.where(status: "cancelled").each do |booking| %>
-          <div class="card card-bookings">
-            <div class="card-email text-center"><%= booking.user.email %></div>
-            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
+  <div class="container-fluid xmarged">
+    <div class="row">
+      <div class="bookings-status">
+        <div class="col-xs-12 col-md-4 booking-status">
+          <h3 class="text-center">Cancelled (<%= @bookings.where(status: "cancelled").size%>)</h3>
+          <% @bookings.where(status: "cancelled").each do |booking| %>
+            <div class="card card-booking text-center">
+              <div class="card-email text-center">
+                <%= set_username(booking.user) %> (<%= set_level(booking.user) %>)
+              </div>
+              <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
+              </div>
+              <div class="card-icons">
+                <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn-primary" do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+              </div>
             </div>
-            <div class="card-icons">
-            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn btn-primary confirm" do %>
-              <i class="fa fa-check middle" aria-hidden="true"></i>
-            <% end %>
+          <% end %>
+        </div>
 
+        <div class="col-xs-12 col-md-4 booking-status">
+          <h3 class="text-center">Pending (<%= @bookings.where(status: "pending").size%>)</h3>
+          <% @bookings.where(status: "pending").each do |booking| %>
+            <div class="card card-booking">
+              <div class="card-email text-center">
+                <%= set_username(booking.user) %> (<%= set_level(booking.user) %>)
+              </div>
+              <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %></div>
+              <div class="card-icons">
+              <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn-primary" do %>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              <% end %>
+              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn-primary" do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
 
-            </div>
-          </div>
-        <% end %>
-      </div>
+        <div class="col-xs-12 col-md-4 booking-status">
+          <h3 class="text-center">Confirmed (<%= @bookings.where(status: "confirmed").size%>)</h3>
+          <% @bookings.where(status: "confirmed").each do |booking| %>
+            <div class="card card-booking">
+              <div class="card-email text-center">
+                <%= set_username(booking.user) %> (<%= set_level(booking.user) %>)
+              </div>
+              <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
+              </div>
+              <div class="card-icons">
+              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn-primary cancel" do %>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              <% end %>
 
-      <div class="col-xs-12 col-md-4 one-type-bookings">
-        <h2 class="text-center">Pending</h2>
-        <% @bookings.where(status: "pending").each do |booking| %>
-          <div class="card card-bookings">
-            <div class="card-email text-center"><%= booking.user.email %></div>
-            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
+              </div>
             </div>
-            <div class="card-icons">
-            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn btn-primary cancel" do %>
-              <i class="fa fa-times" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary confirm" do %>
-              <i class="fa fa-check" aria-hidden="true"></i>
-            <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <div class="col-xs-12 col-md-4 one-type-bookings">
-        <h3 class="text-center" style="color: $green">Confirmed</h3>
-        <% @bookings.where(status: "confirmed").each do |booking| %>
-          <div class="card card-bookings">
-            <div class="card-email text-center"><%= booking.user.email %></div>
-            <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
-            </div>
-            <div class="card-icons">
-            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary cancel" do %>
-              <i class="fa fa-times middle" aria-hidden="true"></i>
-            <% end %>
-
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
