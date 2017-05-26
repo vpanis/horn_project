@@ -6,8 +6,6 @@ class Booking < ApplicationRecord
   validates :user_id, presence: true
   validates :horntrip_id, presence: true
 
-  after_create :send_welcome_email
-
   private
 
   def send_welcome_email

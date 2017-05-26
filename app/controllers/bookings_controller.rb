@@ -18,7 +18,6 @@ class BookingsController < ApplicationController
     @horntrip = Horntrip.find(params[:horntrip_id])
     @booking = Booking.new(user_id: current_user.id, horntrip_id: @horntrip.id)
     if @booking.save
-      BookingMailer.welcome(@booking).deliver_now
       redirect_to horntrip_booking_path(@horntrip.id, @booking.id)
     else
       render "horntrips/show"
@@ -38,10 +37,8 @@ class BookingsController < ApplicationController
     @horntrip = Horntrip.find(params[:horntrip_id])
     if @booking.status == "pending"
       @booking.status = "confirmed"
-      BookingMailer.welcome(@booking).deliver_now
     else
       @booking.status = "cancelled"
-      BookingMailer.bye(@booking).deliver_now
     end
     @booking.save
     redirect_to horntrip_bookings_path(@horntrip)
@@ -51,10 +48,8 @@ class BookingsController < ApplicationController
     @horntrip = Horntrip.find(params[:horntrip_id])
     if @booking.status == "pending"
       @booking.status = "cancelled"
-      BookingMailer.bye(@booking).deliver_now
     else
       @booking.status = "confirmed"
-      BookingMailer.welcome(@booking).deliver_now
     end
     @booking.save
     redirect_to horntrip_bookings_path(@horntrip)

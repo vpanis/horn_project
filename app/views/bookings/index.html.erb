@@ -55,26 +55,10 @@
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <a data-toggle="modal" data-target="#myModal1"><i class="fa fa-check middle" aria-hidden="true"></i></a>
+            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn btn-primary confirm" do %>
+              <i class="fa fa-check middle" aria-hidden="true"></i>
+            <% end %>
 
-                  <!-- Modal to confirm from cancelled bookings-->
-
-                  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Do you want to confirm this booking ?</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>An email will be sent to <%= booking.user.email %>.</p>
-                        </div>
-                        <div class="modal-footer">
-                          <%= link_to "OK!", horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn btn-primary confirm" %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
             </div>
           </div>
@@ -89,48 +73,12 @@
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <a data-toggle="modal" data-target="#myModal2"><i class="fa fa-times" aria-hidden="true"></i></a>
-
-                <!-- Modal to cancel from pending bookings-->
-
-                <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Do you want to cancel this booking ?</h4>
-                      </div>
-                      <div class="modal-body">
-                        <p>An email will be sent to <%= booking.user.email %>.</p>
-                      </div>
-                      <div class="modal-footer">
-                        <%= link_to "OK!", horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn btn-primary cancel" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              <a data-toggle="modal" data-target="#myModal3"><i class="fa fa-check" aria-hidden="true"></i></a>
-
-                <!-- Modal to confirm from pending bookings-->
-
-                <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Do you want to confirm this booking ?</h4>
-                      </div>
-                      <div class="modal-body">
-                        <p>An email will be sent to <%= booking.user.email %>.</p>
-                      </div>
-                      <div class="modal-footer">
-                        <%= link_to "OK!", horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary confirm" %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn btn-primary cancel" do %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary confirm" do %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% end %>
             </div>
           </div>
         <% end %>
@@ -144,26 +92,9 @@
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <a data-toggle="modal" data-target="#myModal4"><i class="fa fa-times middle" aria-hidden="true"></i></a>
-
-                  <!-- Modal to cancel from confirmed bookings-->
-
-                  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Do you want to cancel this booking ?</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>An email will be sent to <%= booking.user.email %>.</p>
-                        </div>
-                        <div class="modal-footer">
-                          <%= link_to "OK!", horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary cancel" %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary cancel" do %>
+              <i class="fa fa-times middle" aria-hidden="true"></i>
+            <% end %>
 
             </div>
           </div>
