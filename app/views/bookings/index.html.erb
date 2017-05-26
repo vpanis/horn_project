@@ -33,7 +33,11 @@
           </ul>
         </div>
         <div class="col-xs-12">
-          <h2 class="banner-bookings-brand img-price"><strong><%= @horntrip.price %> €</strong></h2>
+          <div class="banner-bookings-content-right">
+            <p class="banner-bookings-brand">Price : <%= @horntrip.price %> €</p>
+            <p class="banner-bookings-brand">Date : <%= @horntrip.starting_day %></p>
+            <p class="banner-bookings-brand"><%= @horntrip.length %> <%= @horntrip.length > 1 ? "days" : "day" %></p>
+          </div>
         </div>
       </div>
     </div>
@@ -44,16 +48,18 @@
   <div class="row">
     <div class="type-bookings">
       <div class="col-xs-12 col-md-4 one-type-bookings">
-        <h3 class="text-center" style="color: red">Cancelled</h3>
+        <h3 class="text-center" style="color: $red">Cancelled</h3>
         <% @bookings.where(status: "cancelled").each do |booking| %>
           <div class="card card-bookings">
             <div class="card-email text-center"><%= booking.user.email %></div>
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put do %>
-                <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              <% end %>
+            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "btn btn-primary confirm" do %>
+              <i class="fa fa-check middle" aria-hidden="true"></i>
+            <% end %>
+
+
             </div>
           </div>
         <% end %>
@@ -67,28 +73,29 @@
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put, class: "cancel" do %>
-                <i class="fa fa-times" aria-hidden="true"></i>
-              <% end %>
-              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "confirm" do %>
-                <i class="fa fa-check" aria-hidden="true"></i>
-              <% end %>
+            <%= link_to horntrip_cancel_booking_path(@horntrip, booking), method: :put , class: "btn btn-primary cancel" do %>
+              <i class="fa fa-times" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary confirm" do %>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            <% end %>
             </div>
           </div>
         <% end %>
       </div>
 
       <div class="col-xs-12 col-md-4 one-type-bookings">
-        <h3 class="text-center" style="color: green">Confirmed</h3>
+        <h3 class="text-center" style="color: $green">Confirmed</h3>
         <% @bookings.where(status: "confirmed").each do |booking| %>
           <div class="card card-bookings">
             <div class="card-email text-center"><%= booking.user.email %></div>
             <div><%= cl_image_tag set_user_image(booking.user), class: "avatar-xlarge" %>
             </div>
             <div class="card-icons">
-              <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch  do %>
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-              <% end %>
+            <%= link_to horntrip_confirm_booking_path(@horntrip, booking), method: :patch, class: "btn btn-primary cancel" do %>
+              <i class="fa fa-times middle" aria-hidden="true"></i>
+            <% end %>
+
             </div>
           </div>
         <% end %>
@@ -96,3 +103,7 @@
     </div>
   </div>
 </div>
+
+
+
+
