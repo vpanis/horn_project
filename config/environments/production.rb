@@ -58,6 +58,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Absolut url for mailer in production
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'https://hornhub.herokuapp.com/' }
 
   # Ignore bad email addresses and do not raise email delivery errors.

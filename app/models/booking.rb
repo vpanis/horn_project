@@ -6,11 +6,11 @@ class Booking < ApplicationRecord
   validates :user_id, presence: true
   validates :horntrip_id, presence: true
 
-  after_create :send_booking_confirmation_email
+  after_create :send_welcome_email
 
   private
 
-  def send_booking_confirmation_email
-    BookingMailer.welcome(self).deliver_now
+  def send_welcome_email
+      BookingMailer.welcome(self).deliver_now
   end
 end
