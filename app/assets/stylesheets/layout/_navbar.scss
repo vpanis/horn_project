@@ -132,3 +132,15 @@
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
 }
+
+
+/* Navbar dropdown menu */
+.btn-login {
+  color: #2AB27B;
+  border: solid 1px #2AB27B;
+}
+.btn-login:hover {
+  color: white !important;
+  background-color: #2AB27B;
+  transition: all 0.3s;
+}

@@ -18,6 +18,10 @@
   margin-top: 50px;
 }
 
+.xl-marged-bottom {
+  margin-bottom: 90px;
+}
+
 .marged-bottom {
   margin-bottom: 50px;
 }
@@ -57,4 +61,9 @@ h1, h2, h3, h4, h5 {
 .body {
   color: #555459;
   line-height: 1.5rem;
+}
+
+// Link
+a:hover {
+  color: #3FBA88 !important;
 }
