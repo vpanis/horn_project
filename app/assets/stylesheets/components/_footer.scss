@@ -1,21 +1,23 @@
 .main-footer {
-    position: relative;
-    z-index: 10;
-    background: #083749;
-    min-height: 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 50px;
-    padding: 40px;
-    list-style: none;
-    color: white;
-    a {
-      color: white;
-    }
-    a:hover {
-      color: #FF696A;
-    }
+  height: 60px;
+  width: 100%;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  z-index: 7;
+  align-items: center;
+  bottom: 0pt;
+  left: 0pt;
+  margin-top: 20px;
+  padding: 0px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e8e8e8;
+  p {
+    margin-bottom: 0px !important;
+  }
 }
 
 /* Footer right section */
@@ -23,4 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  li .fa {
+    color: #757575;
+  }
+  li .fa:hover {
+    color: #3fba88;
+  }
 }
