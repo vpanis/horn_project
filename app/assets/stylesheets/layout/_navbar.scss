@@ -144,3 +144,11 @@
   background-color: #2AB27B;
   transition: all 0.3s;
 }
+
+// Navbar links
+.active {
+  border-bottom: solid 2px #2AB27B;
+  a {
+    color: #2AB27B;
+  }
+}
