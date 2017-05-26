@@ -1,40 +1,42 @@
-<div class="padded-top">
-  <div class="banner" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%), url( <%= image_path 'mike_banner.png' %> );">
-
-    <div class="container">
-      <div class="row">
-
-        <div class="banner-content">
-
-          <div class="col-md-6 col-md-offset-6">
-            <h1 class="banner-title"><strong>Are you sure to be wild ?</strong></h1>
-          </div>
-
-          <div class="col-md-5 col-md-offset-7">
-            <div class="banner-text">
-              <h2 class="banner-brand"><strong>HornHub</strong></h2>
-              <p class="banner-tagline">The hotest experience of extreme tourism.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-md-offset-6">
-            <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
-              <div class="form-group banner-form-group">
-                <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
-              </div>
-              <%= submit_tag("Search HornTrips !", options = {class: "btn btn-primary banner-cta"}) %>
-            <% end %>
-          </div>
-
-        </div>
-      </div>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(236, 240, 241,0.2) 0%, rgba(0,36,61,0.6) 50%), url( <%= image_path 'mike_north.jpg' %> );">
+  <div class="banner-content">
+    <div class="row">
+      <h1>Are you sure to be wild ?</h1>
+      <span class="banner-text"><p>Hornhub, the hotest experience of extreme tourism.</p></span>
+    </div>
+    <div class="row">
+    <%= form_tag(horntrips_path, method: "get", class: "form-inline") do %>
+        <%= text_field_tag("horntrip[q]", "", options = {placeholder: "Enter a location", class: "form-control"}) %>
+        <%= submit_tag("Browse adventures", options = {class: "btn btnhome banner-cta"}) %>
+    <% end %>
     </div>
   </div>
 </div>
+<div class="wrapper" id="benefits">
+  <div class="container padded-top">
+    <div class="col-sm-3 text-center">
+      <%= image_tag 'find_expert.png', style:"height:70px"%>
+      <h4>Find experts</h4>
+    </div>
+    <div class="col-sm-3 text-center horntrip-benefit">
+      <%= image_tag 'go_deep.png', style:"height:70px"%>
+      <h4>Losse yourself</h4>
+    </div>
+    <div class="col-sm-3 text-center horntrip-benefit">
+      <%= image_tag 'learn_skills.png', style:"height:70px"%>
+      <h4>Learn skills</h4>
+    </div>
+    <div class="col-sm-3 text-center horntrip-benefit">
+      <%= image_tag 'sensations.png', style:"height:70px"%>
+      <h4>live sensations</h4>
+    </div>
+  </div>
+</div>
+</div>
 
-<h3 class="readme-header text-center">Daily Specials HornTrips !</h3>
 
-<div class="container-fluid">
+<div class="container-fluid padded-top">
+  <h3 class="readme-header text-center">Daily Specials HornTrips !</h3>
   <div class="row">
 
     <% @horntrips.where.not(user_id: current_user).last(3).each do |horntrip| %>

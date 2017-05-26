@@ -1,23 +1,41 @@
 .banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 350px;
-  width: 100vw;
-  background-size: cover;
-  background-repeat: no-repeat;
   color: white;
+  text-align: center;
+  height: 600px;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.banner-brand {
-  margin-bottom: 0px;
+
+.banner h1 {
+  font-size: 70px;
+  font-weight: bold;
+  margin-bottom: 50px;
 }
-.banner-content {
-  margin-bottom: 70px;
+.banner p {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 30px;
+  color: white;
+  font-weight: 300;
 }
-.banner-form-group {
-  font-size: 15px;
-  padding: 0 10px 0 0;
-}
-.banner-cta {
+
+#horntrip_q {
+  height: 50px;
+  border-radius: 5px;
+  padding: 14px 32px;
   font-size: 17px;
+  margin-right: 5px;
+}
+
+.btnhome {
+  border-radius: 5px;
+  padding: 14px 32px;
+  cursor: pointer;
+  height: 50px;
+  font-size: 17px;
+  background-color: #42c299;
+  color: #fff!important;
 }
