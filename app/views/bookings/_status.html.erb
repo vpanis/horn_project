@@ -1,0 +1,9 @@
+<% if  @booking.status == "pending"%>
+<span class="label label-info"><%= @booking.status %></span>
+<% end %>
+<% if  @booking.status == "cancelled"%>
+  <span class="label label-danger"><%= @booking.status %></span>
+<% end %>
+<% if  @booking.status == "confirmed"%>
+  <span class="label label-primary"><%= @booking.status %></span>
+<% end %>

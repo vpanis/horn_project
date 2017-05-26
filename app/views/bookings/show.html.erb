@@ -1,33 +1,38 @@
+
+
 <% content_for(:title_tag) do %>
   <%= "Booking" %>
 <% end %>
-
-<div class="container trip-description-card col-md-6 col-md-offset-3">
-  <div class="row">
-    <div class="col-xs-12 col-md-9">
-        <h1>Votre demande de booking :</h1>
-        <hr>
-        <p>Horntrip : <%= @booking.horntrip.title %></p>
-        <p>Votre guide : <%= @booking.horntrip.user.email %></p>
-        <hr>
-        <div class="trip-description only-small-screen text-center">
+<div class="marged-top">
+  <div class="container trip-description-card col-md-6 col-md-offset-3">
+  <div class="booking-box">
+    <div class="row">
+      <div class="col-xs-12 col-md-9">
+        <h2>Votre demande de booking <br><small><%= @booking.horntrip.title %></small></h2>
+          <hr>
+          <h4>STATUS</h4>
+          <p><%= render 'status' %></p>
+          <hr>
+          <h4>VOTRE GUIDE</h4>
+          <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <%= @booking.horntrip.user.email %></p>
+          <hr>
+          <div class="trip-description only-small-screen text-center">
+            <%= cl_image_tag set_horntrip_image(@booking.horntrip) %>
+            <p>Price: <%= @booking.status %> euros</p>
+            <h4>Price: <%= @booking.horntrip.price %> euros</h4>
+          </div>
+          <h4>PROGRAMME</h4>
+          <p><%= @booking.horntrip.description %></p>
+      </div>
+      <div class="col-xs-12 col-md-3">
+        <div class="trip-description affix only-large-screen">
           <%= cl_image_tag set_horntrip_image(@booking.horntrip) %>
-          <p>Price: <%= @booking.status %> euros</p>
-          <p>Price: <%= @booking.horntrip.price %> euros</p>
+          <h4>Price: <%= @booking.horntrip.price %> €</h4>
+          <%= link_to 'Back to my trips', trips_path, class: "btn btn-primary btn-sm btn-back-trips"%>
         </div>
-        <hr>
-        <h1 class="text-center">Status : <%= @booking.status %> </h1>
-        <hr>
-        <p>Programme :</p>
-        <p><%= @booking.horntrip.description %></p>
-    </div>
-    <div class="col-xs-12 col-md-3">
-      <div class="trip-description affix only-large-screen">
-        <%= cl_image_tag set_horntrip_image(@booking.horntrip) %>
-        <p>Price: <%= @booking.horntrip.price %> euros</p>
-        <%= link_to 'Back to my trips', trips_path, class: "btn btn-danger btn-back-trips"%>
       </div>
     </div>
   </div>
-</div>
 
+
+</div>
