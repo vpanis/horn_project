@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @horntrips = Horntrip.all
   end
+
+  def twitter
+  end
 end

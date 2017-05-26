@@ -17,7 +17,7 @@
         <div class="card-category"><span class="badge"><%= user_horntrip.bookings.size %></span></div>
         <div class="card-description">
           <h2><%= user_horntrip.title %></h2>
-          <p><%= user_horntrip.description %> <%= user_horntrip.user_id %></p>
+          <p><%= user_horntrip.user_id %></p>
         </div>
         <span class="badge"><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></span>
         <%= link_to "", horntrip_bookings_path(user_horntrip), class: "card-link" %>

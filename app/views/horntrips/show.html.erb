@@ -1,5 +1,3 @@
-show.html
-
 <% content_for(:title_tag) do %>
   <%= @horntrip.title %>
 <% end %>
@@ -10,8 +8,7 @@ show.html
         <h1><%= @horntrip.title %></h1>
         <hr>
         <p><strong>Proposed by:</strong> <%= set_username(@horntrip.user) %></p>
-        <hr>
-        <p><%= set_user_image(@horntrip.user) %></p>
+        <p><%= image_tag set_user_image(@horntrip.user), class: "avatar-xlarge" %></p>
         <p>
           <strong>Required skills:</strong>
           <ul class="list-inline">
